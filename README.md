@@ -1,0 +1,2 @@
+# FullAuthWithAuthorization
+test
