@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DynamicRoleBasedAuthorization.props" />
+</Project>

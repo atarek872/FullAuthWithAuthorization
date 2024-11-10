@@ -1,0 +1,24 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.user.UserName</td>
+                <td>@string.Join(", ", user.roles)</td>
+                <td>
+                    <a asp-action="EditRoles" asp-route-userId="@user.user.Id" class="btn btn-primary">Edit Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
