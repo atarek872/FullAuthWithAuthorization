@@ -1,6 +1,8 @@
 using DynamicRoleBasedAuthorization.Models;
+using DynamicRoleBasedAuthorization.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
-
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -28,7 +31,11 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
- 
+builder.Services.AddAuthentication().AddGoogle(option =>
+{
+    option.ClientId = "213655111677-svncvigsfp5boe2jsvadt8nemner3mc1.apps.googleusercontent.com";
+    option.ClientSecret = "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";
+});
 
 var app = builder.Build();
 //using (var scope = app.Services.CreateScope())

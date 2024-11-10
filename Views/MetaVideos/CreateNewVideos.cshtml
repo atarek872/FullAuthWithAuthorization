@@ -1,0 +1,321 @@
+﻿@{
+    ViewData["Title"] = "MetaHome";
+}
+@model DynamicRoleBasedAuthorization.ViewModel.AddVideoViewModel
+@section Styles{
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--icon font css~vendors/themify-icon/themify-icons.css-->
+    <link rel="stylesheet" href="~/vendors/themify-icon/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/simple-line-icon/simple-line-icons.css">
+    <link rel="stylesheet" href="~/vendors/font-awesome/css/all.css">
+    <link rel="stylesheet" href="~/vendors/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/magnify-pop/magnific-popup.css">
+    <link rel="stylesheet" href="~/vendors/elagent/style.css">
+    <link rel="stylesheet" href="~/vendors/scroll/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+}
+
+
+<section class="fun_fact_area fun_fact_area_two Fun_fa_fse">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-7 col-md-6">
+                <div class="fact_author_img fact_author_img_two text-right">
+                    <div class="square_box box_three"></div>
+                    <div class="square_box box_four"></div>
+                    <img class="wow fadeInUp" data-wow-delay="0.3s" src="~/img/home-tracking/tracking_banner_img.png" alt=""
+                         style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="fun_fact_content">
+                    <h1 class="t_color3 f_p f_700 mb_20">Create new meta</h1>
+                    <p class="f_400 f_size_15 l_height28 mb_40">to create new video ,Just you need 100 Point.</p>
+                    <div class="d-flex">
+                        <div class="fact_item">
+                            <h2 class="t_color3">MY BOINTS</h2>
+                            <h4 class="mb-0"><span id="unit">@Model.bonus.TotalBouns</span> Unit</h4>
+                            <h4 class="mb-0"><span id="dollar">@Model.Dollar</span> $</h4>
+                            <p class="f_400 f_size_15 l_height28 mb_40">You can collect your money if you reach 20$</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="tracking_banner_area text-center">
+    <div class="container">
+        <div class="tracking_banner_content">
+            <h3 class="wow fadeInUp" data-wow-delay="0.8s">Spend less <strong>time tracking</strong> </h3>
+            <p class="wow fadeInUp" data-wow-delay="0.9s">Track your time and watch your productivity soar!</p>
+            @* add vids Form *@
+            <div class="wow fadeInUp" data-wow-delay="0.9s">
+                <form method="post" class="login-form mt_60">
+                    <div class="form-group text_box">
+                        <label asp-for="IframUri" class="f_p text_c f_400">IFrameURI (Copy it from Youtube video)</label>
+                        <input asp-for="IframUri" type="url" placeholder="https://youtu.be/hRjzu">
+                    </div>
+
+
+                    <div style="color:#ff006e">@Html.ValidationMessage("alreadyExist")</div>
+                    <div style="color:#ff006e">@Html.ValidationMessage("NoBonus")</div>
+                    <div style="color:#ff00dc">@TempData["Message"]</div>
+
+
+                    <button type="submit" class="agency_banner_btn">Add Video</button>
+                </form>
+            </div>
+            <br /><br />
+            <img class="wow fadeIn" data-wow-delay="0.9s" src="~/img/home-tracking/tracking_banner_img.png"
+                 alt="">
+        </div>
+        <div class="row tracking_software_logo">
+            <div class="col-lg-2 col-md-3 col-4">
+                <a href="#"><img src="~/img/home-tracking/apple.png" alt=""></a>
+            </div>
+            <div class="col-lg-1 col-md-3 col-4">
+                <a href="#"><img src="~/img/home-tracking/windows.png" alt=""></a>
+            </div>
+            <div class="col-lg-1 col-md-3 col-4">
+                <a href="#"><img src="~/img/home-tracking/google.png" alt=""></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-6">
+                <a href="#"><img src="~/img/home-tracking/tesla.png" alt=""></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-6">
+                <a href="#"><img src="~/img/home-tracking/amazon.png" alt=""></a>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                <a href="#"><img src="~/img/home-tracking/aliexpress.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="tracking_activity_area">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">My Videos</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Views On It</th>
+                    <th scope="col">Bouns From It</th>
+                    <th scope="col">Duration Time</th>
+                    <th scope="col">Uploaded at</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Myownvids)
+                {
+                    <tr>
+                        <th scope="row">-</th>
+                        @foreach (var item2 in Model.Video)
+                        {
+                            @if (item2.id == item.VideoId)
+                            {
+                                <td>@item2.IframUri</td>
+                                @if (@item2.status == 1)
+                                {
+
+                                    <td>Approved</td>
+                                }
+                                else
+                                {
+                                    <td>Pending</td>
+
+                                }
+
+
+                            }
+
+                        }
+
+                        <td>@item.ViewsOnIt</td>
+                        <td>@item.EarnBounsFromIt</td>
+                        <td>@item.DurationTime</td>
+                        <td>@item.UploadedAt</td>
+                    </tr>
+                }
+
+                @*<tr>
+                        <th scope="row"></th>
+                        <td>https://youtu.be/nIY6VxBKgaU</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2300 sec</td>
+                        <td>2022-01-26 00:45:44.807</td>
+                    </tr>*@
+
+            </tbody>
+        </table>
+    </div>
+</section>
+@*<section class="tracking_activity_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="media tracking_item wow fadeInUp">
+                        <img src="img/home-tracking/activity_icon.png" alt="">
+                        <div class="media-body">
+                            <a href="#">
+                                <h3 class="h_head">Track Activity Live</h3>
+                            </a>
+                            <p>Twit cras excuse my French matie boy grub it’s all gone to </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media tracking_item wow fadeInUp" data-wow-delay="0.3s">
+                        <img src="img/home-tracking/time_icon.png" alt="">
+                        <div class="media-body">
+                            <a href="#">
+                                <h3 class="h_head">Time Efficiency</h3>
+                            </a>
+                            <p>Twit cras excuse my French matie boy grub it’s all gone to </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media tracking_item wow fadeInUp" data-wow-delay="0.5s">
+                        <img src="img/home-tracking/analyze_icon.png" alt="">
+                        <div class="media-body">
+                            <a href="#">
+                                <h3 class="h_head">Analyze Input</h3>
+                            </a>
+                            <p>Twit cras excuse my French matie boy grub it’s all gone to </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tracking_product_area sec_pad">
+        <div class="container">
+            <div class="tracking_pr_item" style="background: #fe8585;">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 tracking_bg">
+                        <img src="img/home-tracking/watch_1.png" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tracking_content wow fadeInDown">
+                            <h3>Tracking and productivity reporting</h3>
+                            <p>
+                                Real-time tools and rich insights mean our support solution amplifies your team for
+                                an unbeatable experience.
+                            </p>
+                            <a href="#" class="seo_btn seo_btn_two btn_hover">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tracking_pr_item tracking_pr_two" style="background: #9260d9;">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6 tracking_bg">
+                        <img src="img/home-tracking/crismas.png" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tracking_content wow fadeInDown">
+                            <h3>Organize your scattered projects</h3>
+                            <p>
+                                Real-time tools and rich insights mean our support solution amplifies your team for
+                                an unbeatable experience.
+                            </p>
+                            <a href="#" class="seo_btn seo_btn_two btn_hover">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tracking_pr_item" style="background: #fe8585;">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 tracking_bg">
+                        <img src="img/home-tracking/month.png" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tracking_content wow fadeInDown">
+                            <h3>3 Month free trial for freelancer</h3>
+                            <p>
+                                Real-time tools and rich insights mean our support solution amplifies your team for
+                                an unbeatable experience.
+                            </p>
+                            <a href="#" class="seo_btn seo_btn_two btn_hover">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tracking_price_area sec_pad">
+        <div class="container">
+            <div class="tracking_price_inner wow fadeInUp">
+                <h2>Pricing</h2>
+                <div class="d-flex track_body">
+                    <div class="track_price">
+                        <h3>$9.99</h3>
+                        <h6>/user per month</h6>
+                    </div>
+                    <div class="track_text">
+                        <h4>Free for 3 months</h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check"></i>Cancel anytime</li>
+                            <li><i class="fas fa-check"></i>No contracts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="software_banner_btn btn_submit f_500">Live chat for free</a>
+                    <h6>(No credit card requierd)</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tracking_getting_area sec_pad">
+        <div class="container wow fadeInUp">
+            <img src="img/home-tracking/cta.png" alt="">
+            <h2>Try for free now</h2>
+            <a href="#" class="software_banner_btn btn_submit f_500">Get Started</a>
+        </div>
+    </section>*@
+
+
+
+
+
+
+
+@section Scripts{
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/propper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/vendors/wow/wow.min.js"></script>
+    <script src="~/vendors/sckroller/jquery.parallax-scroll.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/vendors/isotope/isotope-min.js"></script>
+    <script src="~/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script src="~/vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="~/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="~/vendors/counterup/appear.js"></script>
+    <script src="~/vendors/circle-progress/circle-progress.js"></script>
+    <script src="~/vendors/stellar/jquery.stellar.js"></script>
+    <script src="~/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+
+}

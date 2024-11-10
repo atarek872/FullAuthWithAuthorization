@@ -1,8 +1,102 @@
 ﻿@model DynamicRoleBasedAuthorization.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+@section Styles {
 
-<h2>Login</h2>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--icon font css-->
+    <link rel="stylesheet" href="~/vendors/themify-icon/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/elagent/style.css">
+    <link rel="stylesheet" href="~/vendors/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/magnify-pop/magnific-popup.css">
+    <link rel="stylesheet" href="~/vendors/scroll/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
 
-<form method="post">
+}
+<section class="breadcrumb_area">
+    @*<img class="breadcrumb_shap" src="~/img/breadcrumb/banner_bg.png" alt="">*@
+    <div class="container">
+        <div class="breadcrumb_content text-center">
+            <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Login</h1>
+            <p class="f_400 w_color f_size_16 l_height26">
+                For fun and earn money <br> For you and for the sake of a future whose beginning is easy and may end happily, you will not lose anything, you will have fun.
+            </p>
+        </div>
+    </div>
+</section>
+<section class="login_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="login_info">
+                    <div style="color:#ff006e">@Html.ValidationMessage("Invalid")</div>
+                    <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Login</h2>
+                    <p class="f_p f_400 f_size_15">
+                        Welcome! Please confirm that your are visiting <br><a href="#">https://www.metavids.club</a>
+                    </p>
+                    <form method="post" class="login-form mt_60">
+                        <div class="form-group text_box">
+                            <label asp-for="Email" class="f_p text_c f_400">Email</label>
+                            <input asp-for="Email" type="email" placeholder="Email">
+                        </div>
+                        <div class="form-group text_box">
+                            <label asp-for="Password" class="f_p text_c f_400">Password</label>
+                            <input asp-for="Password" type="password" placeholder="******">
+                        </div>
+
+                        <div class="extra">
+                            <div class="checkbox remember">
+                                <label asp-for="RememberMe">
+                                    <input asp-for="RememberMe" type="checkbox"> Keep me Signed in
+                                </label>
+                            </div>
+                            <!--//check-box-->
+                            <div class="forgotten-password">
+                                <a asp-area="" asp-controller="Account" asp-action="ForgotPassword">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn_three">Log in</button>
+
+                        <div class="alter-login text-center mt_30">
+                            New user? <a class="login-link" asp-area="" asp-controller="Account" asp-action="Register">Signup</a>
+                        </div>
+
+
+                    </form>
+@*                     @{
+                        if (Model.ExternalLogins.Count != 0)
+                        {
+                            <div class="alter-login text-center mt_30">
+                                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                                    <div>
+                                        @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                            <button type="submit" class="btn_three" name="provider" value="@provider.Name" title="Login using your @provider.DisplayName account">
+                                                Login By @provider.DisplayName
+                                            </button>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    } *@
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center">
+                <div class="login_img">
+                    <img src="~/img/login_img.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* <form method="post">
     <div class="form-group">
         <label for="Email">Email</label>
         <input type="email" class="form-control" id="Email" name="Email" required />
@@ -16,4 +110,24 @@
 
 <p>
     Don't have an account? <a href="/Account/Register">Register here</a>
-</p>
+</p> *@
+
+@section Scripts{
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/propper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/vendors/wow/wow.min.js"></script>
+<script src="~/vendors/sckroller/jquery.parallax-scroll.js"></script>
+<script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="~/vendors/isotope/isotope-min.js"></script>
+<script src="~/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+<script src="~/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/js/plugins.js"></script>
+<script src="~/js/main.js"></script>
+<script src="https://apis.google.com/js/client:platform.js?onload=startApp"></script>
+
+}

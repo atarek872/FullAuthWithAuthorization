@@ -2,67 +2,216 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DynamicRoleBasedAuthorization</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/DynamicRoleBasedAuthorization.styles.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/img/favicon.png" type="image/x-icon">
+    <title>@ViewData["Title"] - MetaVids</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1342808464294946"
+            crossorigin="anonymous"></script>
+    @RenderSection("Styles", required: false)
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DynamicRoleBasedAuthorization</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <ul>
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="M" class="letters-loading">
+                        M
+                    </span>
+                    <span data-text-preloader="E" class="letters-loading">
+                        E
+                    </span>
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                    <span data-text-preloader="V" class="letters-loading">
+                        V
+                    </span>
+                    <span data-text-preloader="I" class="letters-loading">
+                        I
+                    </span>
+                    <span data-text-preloader="D" class="letters-loading">
+                        D
+                    </span>
+                    <span data-text-preloader="S" class="letters-loading">
+                        S
+                    </span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body_wrapper">
+
+        <header class="header_area">
+            <nav class="navbar navbar-expand-lg menu_one">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="~/img/logo.png" srcset="~/img/logo2x.png 2x" alt="logo"></a>
+                    <a class="btn_get btn_hover mobile_btn ml-auto" href="#get-app">Get Started</a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="menu_toggle">
+                            <span class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span class="hamburger-cross">
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto menu">
+                            <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
+                                <a class="nav-link dropdown-toggle" asp-controller="Home" asp-action="Index">
+                                    Home
+                                </a>
+
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                                <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
+                                    <a class="nav-link dropdown-toggle" asp-controller="MetaVideos" asp-action="ListVids">
+                                        Watch and Earn
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
+                                    <a class="nav-link dropdown-toggle" asp-controller="MetaVideos" asp-action="CreateNewVideos">
+                                        Start Your Business
+                                    </a>
+
+                                </li>
+
+
+                            }
+                            <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
+                                <a class="nav-link dropdown-toggle" asp-controller="Home" asp-action="About">
+                                    About
+                                </a>
+
+                            </li>
+                            <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
+                                <a class="nav-link dropdown-toggle" asp-controller="Home" asp-action="Privacy">
+                                    Privacy
+                                </a>
+
+                            </li>
+                        </ul>
+
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li>Hello, @User.Identity.Name</li>
-                            <li>
-                                <!-- Create a form for POST logout -->
-                                <form action="/Account/Logout" method="post" style="display:inline;">
-                                    @Html.AntiForgeryToken()
-
-                                    <button type="submit" class="btn btn-link" style="color: inherit; text-decoration: none; border: none; background: none;">Logout</button>
-                                </form>
-                            </li>
+                            <div class="tracking_btn">
+                                <a class="er_btn btn_hover" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </div>
                         }
                         else
                         {
-                            <li><a href="/Account/Login">Login</a></li>
-                            <li><a href="/Account/Register">Register</a></li>
+                            <div class="tracking_btn">
+                                <a class="er_btn btn_hover" asp-area="" asp-controller="Account" asp-action="Login" style="margin-right: 10px;">Login</a>
+                            </div>
+                            <div class="tracking_btn">
+                                <a class="er_btn btn_hover" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </div>
                         }
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+
+        @RenderBody()
+
+
+
+
+        <footer class="footer_area h_footer_dark pos_footer_area h_footer_track">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="f_widget dark_widget company_widget">
+                            <a href="index.html" class="f-logo"><img src="~/img/logo2.png" alt=""></a>
+                            <p>© 2022 MetaVids, EG. All rights reserved. Proudly made in EG</p>
+                            <p>© 2022 MetaVids, Ahmed Tarek</p>
+                            @*<div class="f_social_icon">
+                            <a href="#" class="ti-facebook"></a>
+                            <a href="#" class="ti-twitter-alt"></a>
+                            <a href="#" class="ti-vimeo-alt"></a>
+                            <a href="#" class="ti-pinterest"></a>
+                            </div>*@
+                        </div>
+                    </div>
+                    @*<div class="col-lg-3 col-md-6">
+                    <div class="f_widget dark_widget about-widget pl_70">
+                    <h3 class="f-title f_500 t_color f_size_18 mb_40">Download</h3>
+                    <ul class="list-unstyled f_list">
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">Android App</a></li>
+                    <li><a href="#">ios App</a></li>
+                    <li><a href="#">Desktop</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Careers</a></li>
                     </ul>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                    <div class="f_widget dark_widget about-widget pl_20">
+                    <h3 class="f-title f_500 t_color f_size_18 mb_40">Help</h3>
+                    <ul class="list-unstyled f_list">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Term & conditions</a></li>
+                    <li><a href="#">Reporting</a></li>
+                    <li><a href="#">Block Storage</a></li>
+                    <li><a href="#">Tools & Integrations</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                    <div class="f_widget dark_widget about-widget pl_20">
+                    <h3 class="f-title f_500 t_color f_size_18 mb_40">Contact</h3>
+                    <ul class="list-unstyled f_list">
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Sales</a></li>
+                    <li><a href="#">Report Abuse</a></li>
+                    <li><a href="#">System Status</a></li>
+                    </ul>
+                    </div>
+                    </div>*@
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </footer>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - DynamicRoleBasedAuthorization - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

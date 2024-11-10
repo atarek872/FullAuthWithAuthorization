@@ -1,0 +1,281 @@
+﻿@{
+    ViewData["Title"] = "Earn Money";
+}
+@section Styles{
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--icon font css-->
+    <link rel="stylesheet" href="~/vendors/themify-icon/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/elagent/style.css">
+    <link rel="stylesheet" href="~/vendors/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/magnify-pop/magnific-popup.css">
+    <link rel="stylesheet" href="~/vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="~/vendors/scroll/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+}
+
+
+
+<section class="breadcrumb_area">
+    @*<img class="breadcrumb_shap" src="~/img/breadcrumb/banner_bg.png" alt="">*@
+    <div class="container">
+        <div class="breadcrumb_content text-center">
+            <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Available Channels</h1>
+            <p class="f_400 w_color f_size_16 l_height26">
+                Watching 90 Sec = 10 Points<br>Watch and Make your channel now by first easy step.!!
+            </p>
+        </div>
+    </div>
+</section>
+<section class="shop_list_area sec_pad">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-sm-5">
+
+            </div>
+            @*<div class="col-lg-6 col-sm-7">
+                <div class="shop_menu_right d-flex align-items-center justify-content-end">
+                    <h5>Reload Vids</h5>
+                
+                    <div class="view-style shop_grid">
+                        <div class="list-style">
+                            <a id="btnGet"><i class="ti-layout-grid2"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>*@
+        </div>
+        @*start loop*@
+        <div class="row shop_list_item">
+            <div class="col-md-12">
+                <div>
+                    <h2 id="requiredDone"></h2>
+                </div>
+                <div  id="player" >
+                    
+                </div>
+            </div>
+        </div>
+
+        @*<div class="col-lg-12">
+            <ul class="list-unstyled page-numbers shop_page_number">
+                <li><span aria-current="page" class="page-numbers current">1</span></li>
+                <li><a class="page-numbers" href="#">2</a></li>
+                <li><a class="next page-numbers" href="#"><i class="ti-arrow-right"></i></a></li>
+            </ul>
+        </div>*@
+    </div>
+    
+</section>
+
+
+
+@section Scripts{
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/propper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/vendors/wow/wow.min.js"></script>
+    <script src="~/vendors/sckroller/jquery.parallax-scroll.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/vendors/isotope/isotope-min.js"></script>
+    <script src="~/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script src="~/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="~/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script>
+        //var tarekUri;
+        //$(function () {
+
+        //    $("#btnGet").click(function () {
+        //        $.ajax({
+        //            type: "GET",
+        //            url: "/MetaVideos/LoadVids",
+        //            //data: { "name": $("#txtName").val() },
+        //            success: function (response) {
+        //                //(response.video[0].iframUri).split('/')[3] -> URI
+        //                console.log((response.video[0].iframUri).split('/')[3]);
+        //                tarekUri = (response.video[0].iframUri).split('/')[3];
+        //            },
+        //            failure: function (response) {
+        //                alert(response.responseText);
+        //            },
+        //            error: function (response) {
+        //                alert(response.responseText);
+        //            }
+        //        });
+        //    });
+        //});
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        //Tarek
+        var parser = document.createElement('a');
+        parser.href = window.location.href;
+        //console.log((parser.pathname).split('/')[3]);
+
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                //height: '399',
+                width: $(document).width() /2,
+                videoId: (parser.pathname).split('/')[3],
+                playerVars: {
+                    'playsinline': 0,
+                    'showinfo': 1,
+                    'controls': 0
+                    //'disablekb':1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.setVolume(100);
+            
+            //event.target.playVideo();
+
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        function onPlayerStateChange(event) {
+
+            //console.log("New");
+            //console.log(player.getCurrentTime());
+            //console.log(player.getDuration());
+            //console.log(event.data);
+
+
+            if (event.data == 1) {
+                Clock.start();
+            }
+            if (event.data == 2) {
+                Clock.pause();
+            }
+            if (player.getDuration() == player.getCurrentTime()) {
+                console.log("Watchecd Done")
+            }
+            //if (event.data == YT.PlayerState.PLAYING && !done) {
+            //    setTimeout(stopVideo, 6000);
+            //    done = true;
+            //}
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+
+        }
+
+
+
+        //COunter
+        var Clock = {
+            totalSeconds: 0,
+
+            start: function () {
+                if (!this.interval) {
+                    var self = this;
+                    function pad(val) { return val > 9 ? val : "0" + val; }
+                    this.interval = setInterval(function () {
+                        self.totalSeconds += 1;
+
+                        //add action when it will be 90 secend
+                        //console.log(self.totalSeconds);
+
+                        if (self.totalSeconds == 10) {
+
+
+                            
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/MetaVideos/WatchAction",
+                                        data: { "VideoId": (parser.pathname).split('/')[4], "Uri": (parser.pathname).split('/')[3] },
+                                        success: function (response) {
+                                            //(response.video[0].iframUri).split('/')[3] -> URI
+                                            console.log(response);
+                                        },
+                                        failure: function (response) {
+                                            alert(response.responseText);
+                                        },
+                                        error: function (response) {
+                                            alert(response.responseText);
+                                        }
+                                    });
+                           
+
+
+                            document.getElementById('requiredDone').innerHTML = "Congratulations, you have now won ten points, now keep watching to achieve more"
+                        }
+                        //if (self.totalSeconds == 10) {
+                        //    document.getElementById("bouns").innerText() = ;
+
+                        //}
+
+                        //document.getElementById("min").innerHTML = pad(Math.floor(self.totalSeconds / 60 % 60));
+                        //document.getElementById("sec").innerHTML = pad(parseInt(self.totalSeconds % 60));
+                    }, 1000);
+                }
+            },
+
+            reset: function () {
+                Clock.totalSeconds = null;
+                clearInterval(this.interval);
+                document.getElementById("min").innerHTML = "00";
+                document.getElementById("sec").innerHTML = "00";
+                delete this.interval;
+            },
+            pause: function () {
+                clearInterval(this.interval);
+                delete this.interval;
+            },
+
+            resume: function () {
+                this.start();
+            },
+
+            restart: function () {
+                this.reset();
+                Clock.start();
+            }
+        };
+
+
+                //document.getElementById("startButton").addEventListener("click", function () { Clock.start(); });
+                //document.getElementById("pauseButton").addEventListener("click", function () { Clock.pause(); });
+                //document.getElementById("resumeButton").addEventListener("click", function () { Clock.resume(); });
+                //document.getElementById("resetButton").addEventListener("click", function () { Clock.reset(); });
+                //document.getElementById("restartButton").addEventListener("click", function () { Clock.restart(); });
+
+
+
+                // end counter
+
+
+
+    </script>
+}

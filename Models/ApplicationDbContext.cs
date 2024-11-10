@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DynamicRoleBasedAuthorization.Models.MetaVideos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,15 @@ namespace DynamicRoleBasedAuthorization.Models
         {
         }
 
-        // Add other DbSets here for your application models if needed
+        public DbSet<Bouns> Bouns { get; set; }
+        public DbSet<MetaVids> MetaVids { get; set; }
+        public DbSet<MyVideos> MyVideos { get; set; }
+        public DbSet<WatchedVideos> WatchedVideos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }

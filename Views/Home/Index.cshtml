@@ -1,8 +1,92 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "MetaHome";
+}
+@section Styles {
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--icon font css-->
+    <link rel="stylesheet" href="~/vendors/themify-icon/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/font-awesome/css/all.css">
+    <link rel="stylesheet" href="~/vendors/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/magnify-pop/magnific-popup.css">
+    <link rel="stylesheet" href="~/vendors/elagent/style.css">
+    <link rel="stylesheet" href="~/vendors/scroll/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+
+<section class="breadcrumb_area"
+         style="background-image: url('img/Img-03Login.png'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+    <div class="container">
+        <div class="breadcrumb_content text-center">
+            @*<h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">video</h1>
+            <p class="f_400 w_color f_size_16 l_height26">
+            Why I say old chap that is spiffing off his nut arse pear
+            shaped plastered <br> Jeffrey bodge barney some dodgy.!!
+            </p>*@
+        </div>
+    </div>
+</section>
+
+<section class="software_banner_area d-flex align-items-center cus_vi">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex align-items-center">
+                <div class="software_banner_content">
+                    <h2 class="f_500 f_size_50 w_color wow fadeInLeft" data-wow-delay="0.2s"
+                        style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                        We deliver
+                        the <span class="f_700">Software</span> You need, no more no less
+                    </h2>
+                    @*<p class="w_color f_size_18 l_height30 mt_30 wow fadeInLeft" data-wow-delay="0.4s"
+                    style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                    Why I say
+                    old chap that is spiffing off his nut arse pear shaped plastered Jeffrey bodge barney some
+                    dodgy.!
+                    </p>*@
+                    <div class="action_btn d-flex align-items-center mt_40 wow fadeInLeft" data-wow-delay="0.6s"
+                         style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                        <a asp-controller="MetaVideos" asp-action="EarnPoints" class="software_banner_btn">Get Started</a>
+                        <a href="~/Vid/JoinTousJoin.mp4" class="video_btn popup-youtube">
+                            <div class="icon"><i class="ti-control-play"></i></div><span>Watch Video</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="software_img wow fadeInRight" data-wow-delay="0.2s"
+                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
+                    <img src="~/img/home5/banner_img.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/propper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/vendors/wow/wow.min.js"></script>
+    <script src="~/vendors/sckroller/jquery.parallax-scroll.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/vendors/isotope/isotope-min.js"></script>
+    <script src="~/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script src="~/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+}

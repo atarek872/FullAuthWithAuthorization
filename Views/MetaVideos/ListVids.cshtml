@@ -1,0 +1,232 @@
+﻿@{
+    ViewData["Title"] = "MetaHome";
+}
+
+@model List<DynamicRoleBasedAuthorization.ViewModel.YouTubeVideoDetails>;
+@section Styles{
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--icon font css~vendors/themify-icon/themify-icons.css-->
+    <link rel="stylesheet" href="~/vendors/themify-icon/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/simple-line-icon/simple-line-icons.css">
+    <link rel="stylesheet" href="~/vendors/font-awesome/css/all.css">
+    <link rel="stylesheet" href="~/vendors/flaticon/flaticon.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/animation/animate.css">
+    <link rel="stylesheet" href="~/vendors/magnify-pop/magnific-popup.css">
+    <link rel="stylesheet" href="~/vendors/elagent/style.css">
+    <link rel="stylesheet" href="~/vendors/scroll/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+
+}
+
+
+
+
+
+
+
+<section class="breadcrumb_area">
+    <img class="breadcrumb_shap" src="~/img/breadcrumb/banner_bg.png" alt="">
+    <div class="container">
+        <div class="breadcrumb_content text-center">
+            <h1 class="f_p f_700 f_size_50 w_color l_height50 mb_20">Blog List</h1>
+            <p class="f_400 w_color f_size_16 l_height26">
+                Why I say old chap that is spiffing off his nut arse
+                pear shaped plastered<br> Jeffrey bodge barney some dodgy.!!
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="blog_area sec_pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @foreach (var item in Model)
+                {
+                    <div class="blog_list_item mb_50">
+                        <img class="img-fluid" src="@item.Image" alt="">
+                    <div class="blog_content">
+                        <div class="post_date">
+                            <h2>10 <span>Points</span></h2>
+                        </div>
+                        <div class="entry_post_info">
+                            By: <a href="#">@item.ChannelTitle</a>
+
+                        </div>
+                        <a href="#">
+                            <h5 class="f_p f_size_20 f_500 t_color mb_20">
+                                @item.Title
+                            </h5>
+                        </a>
+                        <p class="f_400 mb_20">
+                            @item.Description
+                        </p>
+                        <a href="#" id="@item.Uri" class="learn_btn_two redirect">
+                            Watch Now <i class="ti-arrow-right redirectid" id="@item.MetaVIdsId"></i>
+                        </a>
+                    </div>
+                    </div>
+                }
+
+
+            </div>
+            <div class="col-lg-4">
+                @*<div class="blog-sidebar">
+                        <div class="widget sidebar_widget widget_search">
+                            <form action="#" class="search-form input-group">
+                                <input type="search" class="form-control widget_input" placeholder="Search">
+                                <button type="submit"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="widget sidebar_widget widget_recent_post mt_60">
+                            <div class="widget_title">
+                                <h3 class="f_p f_size_20 t_color3">Recent posts</h3>
+                                <div class="border_bottom"></div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/blog-grid/post_1.jpg" alt="">
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h3 class="f_size_16 f_p f_400">
+                                            Proin gravi nibh velit auctor aliquet
+                                            aenean.
+                                        </h3>
+                                    </a>
+                                    <div class="entry_post_info">
+                                        By: <a href="#">Admin</a>
+                                        <a href="#">March 14, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/blog-grid/post_2.jpg" alt="">
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h3 class="f_size_16 f_p f_400">
+                                            Proin gravi nibh velit auctor aliquet
+                                            aenean.
+                                        </h3>
+                                    </a>
+                                    <div class="entry_post_info">
+                                        By: <a href="#">Admin</a>
+                                        <a href="#">March 14, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/blog-grid/post_3.jpg" alt="">
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h3 class="f_size_16 f_p f_400">
+                                            Proin gravi nibh velit auctor aliquet
+                                            aenean.
+                                        </h3>
+                                    </a>
+                                    <div class="entry_post_info">
+                                        By: <a href="#">Admin</a>
+                                        <a href="#">March 14, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/blog-grid/post_4.jpg" alt="">
+                                <div class="media-body">
+                                    <a href="#">
+                                        <h3 class="f_size_16 f_p f_400">
+                                            Proin gravi nibh velit auctor aliquet
+                                            aenean.
+                                        </h3>
+                                    </a>
+                                    <div class="entry_post_info">
+                                        By: <a href="#">Admin</a>
+                                        <a href="#">March 14, 2020</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget sidebar_widget widget_categorie mt_60">
+                            <div class="widget_title">
+                                <h3 class="f_p f_size_20 t_color3">Categories</h3>
+                                <div class="border_bottom"></div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li> <a href="#"><span>Fashion</span><em>(54)</em></a> </li>
+                                <li> <a href="#"><span>Food for thought</span><em>(83)</em></a> </li>
+                                <li> <a href="#"><span>Gaming</span><em>(96)</em></a> </li>
+                                <li> <a href="#"><span>Music</span><em>(38)</em></a> </li>
+                                <li> <a href="#"><span>Uncategorized</span><em>(44)</em></a> </li>
+                                <li> <a href="#"><span>SaasLand</span><em>(44)</em></a> </li>
+                                <li> <a href="#"><span>Project Management</span><em>(44)</em></a> </li>
+                                <li> <a href="#"><span>Wireframing</span><em>(44)</em></a> </li>
+                            </ul>
+                        </div>
+                        <div class="widget sidebar_widget widget_tag_cloud mt_60">
+                            <div class="widget_title">
+                                <h3 class="f_p f_size_20 t_color3">Tags</h3>
+                                <div class="border_bottom"></div>
+                            </div>
+                            <div class="post-tags">
+                                <a href="#">SaasLand</a>
+                                <a href="#">Web Design</a>
+                                <a href="#">Saas</a>
+                                <a href="#">Cooling System</a>
+                                <a href="#">Corporate</a>
+                                <a href="#">Software</a>
+                                <a href="#">Landing</a>
+                                <a href="#">Wheels</a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+@section Scripts{
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/propper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/vendors/wow/wow.min.js"></script>
+    <script src="~/vendors/sckroller/jquery.parallax-scroll.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/vendors/isotope/isotope-min.js"></script>
+    <script src="~/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script src="~/vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="~/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="~/vendors/counterup/appear.js"></script>
+    <script src="~/vendors/circle-progress/circle-progress.js"></script>
+    <script src="~/vendors/stellar/jquery.stellar.js"></script>
+    <script src="~/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+
+
+
+
+    <script>
+        function redirectOnClick(Uri) {
+            document.location = 'MetaVideos/EarnPoints/' + Uri;
+        }
+        $(".redirect").click(function () {
+            //console.log($("#redirectid").attr("id"));
+            document.location = 'EarnPoints/' + $(this).attr("id") + "/" + $(".redirectid").attr("id");
+
+        });
+    </script>
+}
