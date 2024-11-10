@@ -127,7 +127,11 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="tracking_btn">
-                                <a class="er_btn btn_hover" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                <form action="/Account/Logout" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+
+                                    <button type="submit" class="er_btn btn_hover" >Logout</button>
+                                </form>
                             </div>
                         }
                         else

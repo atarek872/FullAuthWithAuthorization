@@ -180,7 +180,7 @@ namespace DynamicRoleBasedAuthorization.Controllers
                         await _context.SaveChangesAsync();
                         using (var youtubeService = new YouTubeService(new BaseClientService.Initializer()
                         {
-                            ApiKey = "AIzaSyClq67w_MkSZ_07JzifvnFjymuRfSwFaVc",
+                            ApiKey = "AIzaSyAEV64XZjqPC_G4STERFtfc18XGS99B8SE",
                         }))
                         {
                             var searchDuration = youtubeService.Videos.List("contentDetails");

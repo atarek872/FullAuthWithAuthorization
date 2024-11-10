@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DynamicRoleBasedAuthorization")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+731a58c776ca00170bda230410d60c078cb267c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86923c8e2700f0f35890e0e3c23f49175f7f88bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("DynamicRoleBasedAuthorization")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DynamicRoleBasedAuthorization")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

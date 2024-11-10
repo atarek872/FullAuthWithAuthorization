@@ -12,8 +12,8 @@ namespace DynamicRoleBasedAuthorization.ViewModel
         [Required]
         public string IframUri { get; set; }
         public Bouns? bonus { get; set; }
-        public List<MyVideos> Myownvids { get; set; }
-        public List<MetaVids> Video { get; set; }
+        public List<MyVideos>? Myownvids { get; set; }
+        public List<MetaVids>? Video { get; set; }
         public Double Dollar { get; set; }
     }
 }

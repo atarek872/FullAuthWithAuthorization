@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using DynamicRoleBasedAuthorization.ViewModels;
 using DynamicRoleBasedAuthorization.Models;
+using Microsoft.EntityFrameworkCore;
+using VimeoDotNet.Models;
+using System;
+using System.Security.Claims;
+using DynamicRoleBasedAuthorization.Models.MetaVideos;
+using DynamicRoleBasedAuthorization.Services;
 
 namespace DynamicRoleBasedAuthorization.Controllers
 {
@@ -10,11 +16,18 @@ namespace DynamicRoleBasedAuthorization.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;  // Use ApplicationUser here
         private readonly SignInManager<ApplicationUser> _signInManager;  // Use ApplicationUser here
+        private ApplicationDbContext _context;
+        private IMailService _mailService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+
+        public AccountController(UserManager<ApplicationUser> userManager, ApplicationDbContext metavideosContext, SignInManager<ApplicationUser> signInManager, IMailService mailService)
         {
+
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = metavideosContext;
+            _mailService = mailService;
+
         }
 
         // GET: Account/Register
@@ -38,9 +51,16 @@ namespace DynamicRoleBasedAuthorization.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     // Assign a role to the new user (for example, "User" role)
-                    await _userManager.AddToRoleAsync(user, "User");  // You can customize this logic based on your needs
+                    await _userManager.AddToRoleAsync(user, "User");   
+                    Bouns obj = new Bouns();
+                    obj.UserId = user.Id;
+                    obj.TotalVideosViewed = 0;
+                    obj.TotalBouns = 100;
 
-                    return RedirectToAction("Login", "Account"); // Redirect to Login page after successful registration
+                    _context.Bouns.Add(obj);
+                    await _context.SaveChangesAsync();
+                    //return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 foreach (var error in result.Errors)
@@ -67,8 +87,28 @@ namespace DynamicRoleBasedAuthorization.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home"); // Redirect to home after successful login
-                }
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                    var CheckIfHaveBounceProfile = _context.Bouns.Where(t => t.UserId == userId).Count();
+
+                    if (CheckIfHaveBounceProfile == 0)
+                    {
+                        var Bouns = new Bouns()
+                        {
+                            UserId = userId,
+                            TotalBouns = 100,
+                            TotalVideosViewed = 0
+
+                        };
+                        _context.Add(Bouns);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                 }
 
                 ModelState.AddModelError("", "Invalid login attempt");
             }
@@ -82,6 +122,21 @@ namespace DynamicRoleBasedAuthorization.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account"); // Redirect to Login after logout
+        }
+        [HttpPost("send")]
+        public async Task<IActionResult> SendMail([FromForm] MailRequest request)
+        {
+            try
+            {
+                await _mailService.SendEmailAsync(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
         }
     }
 }
